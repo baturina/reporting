@@ -1,11 +1,12 @@
-import org.junit.Test;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
         import com.codeborne.selenide.Configuration;
         import com.codeborne.selenide.logevents.SelenideLogger;
         import io.qameta.allure.selenide.AllureSelenide;
-        import org.openqa.selenium.Keys;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
         import ru.netology.web.DataGenerator;
         import ru.netology.web.User;
 
@@ -50,14 +51,14 @@ public class CardDeliveryOrderTest {
     }
 
     @Test
-    void shouldRegisterCardOrderBySpecificName() {
+    void shouldRegisterCardOrderByInvalidName() {
         open("http://localhost:9999");
         User userOne = DataGenerator.Registration.registrationUser();
         DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd.MM.uuuu");
         $("[data-test-id=city] .input__control").setValue(userOne.getCity());
         $("[data-test-id=date] .input__control[value]").sendKeys(Keys.chord(Keys.CONTROL, "a"), Keys.DELETE);
         $("[data-test-id=date] .input__control").setValue(userOne.getLocalDate());
-        $("[data-test-id=name] .input__control").setValue("Артур Жигулёв");
+        $("[data-test-id=name] .input__control").setValue("David Грец");
         $("[data-test-id=phone] .input__control").setValue(userOne.getPhone());
         $("[data-test-id=agreement] .checkbox__box").click();
         $(".button .button__text").click();
